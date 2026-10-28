@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste Des Taches</title>
+</head>
+<body>
+    Bonjour tout le monde
+    <ul>
+    {% for tache in liste %}
+    <li>{{tache.nom}} -- {{tache.status}}</li>
+    {%empty%}
+    <li>Il y'a pas de tache pour le moment</li>
+
+    {%endfor%}
+    </ul>
+</body>
+</html>
