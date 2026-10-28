@@ -1,10 +1,11 @@
 from django.urls import path
-from django.contrib import admin
+from . import views
 
-from taches import views
-from taches.views import liste_taches
+
+app_name = "taches"
 
 urlpatterns = [
     path("", views.liste_taches, name = "liste_taches"),
+    path("ajouter/", views.ajouter_taches, name= "ajouter_taches"),
    
 ]
