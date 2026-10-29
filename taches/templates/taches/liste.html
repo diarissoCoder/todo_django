@@ -6,18 +6,24 @@
     <title>Liste Des Taches</title>
 </head>
 <body>
-    Bonjour tout le monde
+   
     <ul>
     {% for tache in liste %}
-    <li>{{tache.nom}} -- {{tache.status}}--- 
+    <li>{{tache.nom}} -- {{tache.get_status_display}}--- 
         <a href="{% url 'taches:modifier_tache' tache.pk %}">Modifier</a>
         ------------
         <a href="{% url 'taches:supprimer_tache' tache.pk %}">Supprimer </a>
-       
+
+        {% if tache.status == "en cours" %}
+            <form action="{% url 'taches:terminer_tache' tache.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Terminer</button>
+            </form>
+       {% endif %}
     </li>
 
     {%empty%}
-    <li>Il y'a pas de tache pour le moment</li>
+    <li>Il n'y a aucune tache pour le moment</li>
 
     {%endfor%}
     </ul>

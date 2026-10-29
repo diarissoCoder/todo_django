@@ -41,6 +41,12 @@ def supprimer_tache(request, pk):
     
     return render(request, "taches/confirmer_suppression.html", {"tache" : tache})
 
-
+def terminer_tache(request, pk):
+    tache = get_object_or_404(Tache, pk=pk)
+    if request.method == 'POST':
+        tache.status = 'termine'
+        tache.save()
+    return redirect('taches:liste_taches')
+    
     
        
