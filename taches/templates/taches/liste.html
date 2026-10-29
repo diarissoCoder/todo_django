@@ -9,7 +9,12 @@
     Bonjour tout le monde
     <ul>
     {% for tache in liste %}
-    <li>{{tache.nom}} -- {{tache.status}}--- <a href="{% url 'taches:modifier_tache' tache.pk %}">Modifier</a></li>
+    <li>{{tache.nom}} -- {{tache.status}}--- 
+        <a href="{% url 'taches:modifier_tache' tache.pk %}">Modifier</a>
+        ------------
+        <a href="{% url 'taches:supprimer_tache' tache.pk %}">Supprimer </a>
+       
+    </li>
 
     {%empty%}
     <li>Il y'a pas de tache pour le moment</li>

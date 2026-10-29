@@ -33,15 +33,13 @@ def modifier_tache(request, pk):
     return render(request, "taches/ajouter.html", {"form" : form})
 
 
-def supprimer_tache(request, pk):
+def supprimer_tache(request, pk):   
+    tache = get_object_or_404(Tache, pk=pk)
     if request.method == "POST":
-        form = TacheForm(request.POST, pk)
-        form.delete()
+        tache.delete()
         return redirect("taches:liste_taches") 
-    else:
-        form = TacheForm()
-
-    return render(request, "taches/confirmer_suppression.html", {"form" : form})
+    
+    return render(request, "taches/confirmer_suppression.html", {"tache" : tache})
 
 
     
