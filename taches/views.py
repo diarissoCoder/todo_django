@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import TacheForm
 from taches.models import Tache
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 def liste_taches(request):
@@ -41,11 +42,11 @@ def supprimer_tache(request, pk):
     
     return render(request, "taches/confirmer_suppression.html", {"tache" : tache})
 
+@require_POST
 def terminer_tache(request, pk):
     tache = get_object_or_404(Tache, pk=pk)
-    if request.method == 'POST':
-        tache.status = 'termine'
-        tache.save()
+    tache.status = 'termine'
+    tache.save()
     return redirect('taches:liste_taches')
     
     

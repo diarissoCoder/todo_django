@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste Des Taches</title>
-</head>
-<body>
-   
+{% extends "taches/base.html" %}
+{%block content%}
     <ul>
     {% for tache in liste %}
-    <li>{{tache.nom}} -- {{tache.get_status_display}}--- 
+    <li>{{tache.nom}}  {{tache.get_status_display}} 
         <a href="{% url 'taches:modifier_tache' tache.pk %}">Modifier</a>
-        ------------
+        
         <a href="{% url 'taches:supprimer_tache' tache.pk %}">Supprimer </a>
 
-        {% if tache.status == "en cours" %}
+        {% if tache.status != "termine" %}
             <form action="{% url 'taches:terminer_tache' tache.pk %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Terminer</button>
@@ -28,5 +21,5 @@
     {%endfor%}
     </ul>
     <p> <a href="{% url 'taches:ajouter_tache'  %}">ajouter tache</a> </p>
-</body>
-</html>
+
+    {% endblock %}

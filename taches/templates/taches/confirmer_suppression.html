@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmer la suppression</title>
-</head>
-<body>
-<p>voulez-vous vraiment supprimer {{tache.nom}} </p>
+{% extends "taches/base.html" %}
+{% block content%}
+
 <form action="" method="post">
     {% csrf_token%}
-    
+    <p>voulez-vous vraiment supprimer {{tache.nom}} </p>
     <button type="submit">Confirmer</button>
     <a href="{% url 'taches:liste_taches'  %}">Annuler  </a>
 </form>
-</body>
-</html>
+
+{% endblock%}
