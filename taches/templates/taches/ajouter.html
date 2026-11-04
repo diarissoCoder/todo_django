@@ -1,9 +1,20 @@
 {% extends "taches/base.html" %}
- {% block content %}
-    <form action="" method="post">
+
+{% block title%}
+   Ajoutez une tâche
+{%endblock%}
+
+{% block content %}
+<div class="bg-white rounded p-6">
+    <h1 class="text-2xl font-bold mb-4"> {{titre}} </h1>
+    <form method="post">
       {% csrf_token %}
-       {{form.as_p}}
-       <button type="submit">Ajouter</button> <h4> <a href="{% url 'taches:liste_taches'%}">retour</a> </h4>
+      {{form.as_p}}
+
+    <div class="flex gap-4 rounded">
+       <button type="submit" class="text-white font-bold text-xl bg-blue-600 rounded px-3 py-1">Enregistrer</button>
+        <a href="{% url 'taches:liste_taches'%}" class="text-white rounded bg-gray-600 px-3 py-2" >retour</a>
+    </div>
     </form>
-    
+</div>
     {% endblock %}

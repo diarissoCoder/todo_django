@@ -1,25 +1,40 @@
 {% extends "taches/base.html" %}
-{%block content%}
-    <ul>
-    {% for tache in liste %}
-    <li>{{tache.nom}}  {{tache.get_status_display}} 
-        <a href="{% url 'taches:modifier_tache' tache.pk %}">Modifier</a>
-        
-        <a href="{% url 'taches:supprimer_tache' tache.pk %}">Supprimer </a>
 
-        {% if tache.status != "termine" %}
-            <form action="{% url 'taches:terminer_tache' tache.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Terminer</button>
-            </form>
-       {% endif %}
-    </li>
+{% block title %}  « Liste des tâches {% endblock %}
+
+{%block content%}  
+  <h1 class="text-2xl font-bold mb-4">Mes  tâches</h1>
+    
+        {% for tache in liste %}
+        
+            <div class="bg-white rounded shadow p-4 mb-3 flex justify-between items-center">
+                <div>
+                    <p class="text-lg font-bold"> {{tache.nom}} </p> 
+                    <p class="text-sm text-gray-500"> {{tache.get_status_display}} </p>   
+                </div>
+            
+        
+            <div class="flex gap-2 items-center ">
+                <a href="{%url 'taches:modifier_tache' tache.pk%} " class="text-white bg-blue-600 px-3 py-1 rounded ">Modifier</a>
+                
+                <a href="{%url 'taches:supprimer_tache' tache.pk%}" class="text-white bg-red-600 px-3 py-1 rounded  ">Supprimer </a>
+
+                {% if tache.status != "termine" %}
+                    <form action="{%url 'taches:terminer_tache' tache.pk%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class=" bg-green-600 text-white px-3 py-1 rounded">Terminer</button>
+                    </form>
+                
+                {% endif %}
+            </div>
+        
+</div>
 
     {%empty%}
-    <li>Il n'y a aucune tache pour le moment</li>
+    <p>Il n'y a aucune tâche pour le moment</p>
 
     {%endfor%}
-    </ul>
-    <p> <a href="{% url 'taches:ajouter_tache'  %}">ajouter tache</a> </p>
+    
+    <p> <a href="{%url 'taches:ajouter_tache'%}" class="inline-block bg-gray-600 text-white px-4 py-2 rounded hover:bg-blue-800">Ajouter une tâche</a> </p>
 
     {% endblock %}

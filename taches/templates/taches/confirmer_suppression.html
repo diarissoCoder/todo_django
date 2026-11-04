@@ -1,11 +1,14 @@
 {% extends "taches/base.html" %}
-{% block content%}
+{% block title%}
+   confirmer la suppression
 
+   {%endblock%}
+{% block content%}
 <form action="" method="post">
     {% csrf_token%}
-    <p>voulez-vous vraiment supprimer {{tache.nom}} </p>
-    <button type="submit">Confirmer</button>
-    <a href="{% url 'taches:liste_taches'  %}">Annuler  </a>
+    <p class="font-bold">voulez-vous vraiment supprimer {{tache.nom}} </p>
+    <button type="submit" class="rounded text-white bg-red-600 px-4 py-2">Confirmer</button>
+    <a href="{% url 'taches:liste_taches'%}" class="rounded text-white shadow bg-gray-600 px-4 py-2">Annuler  </a>
 </form>
 
 {% endblock%}
