@@ -1,6 +1,6 @@
 # Nom du projet
 
-l'application permet de créer des taches de les modifiées et de les supprimées.
+l'application permet de créer des taches de les modifier et de les supprimer.
 
 ## Fonctionnalités
 - Modifier
